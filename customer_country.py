@@ -3,22 +3,22 @@ def main():
 
     customer_country = open("customer_country.csv", "w", newline="")
     customers = open("customers.csv", "r")
-    cc_file = csv.writer(customer_country, delimiter=",")
-    cust_file = csv.reader(customers, delimiter=",")
+    writer = csv.writer(customer_country, delimiter=",")
+    reader = csv.reader(customers, delimiter=",")
 
-    next(cust_file)
+    next(reader)
     count = 0
     header = ["Name", "Country"]
-    cc_file.writerow(header)
+    writer.writerow(header)
 
-    for r in cust_file:
+    for r in reader:
         count += 1
         row = [r[1] + " " + r[2], r[4]]
-        cc_file.writerow(row)
+        writer.writerow(row)
 
     total = ["TOTAL CUSTOMERS", str(count)]
-    cc_file.writerow("")
-    cc_file.writerow(total)
+    writer.writerow("")
+    writer.writerow(total)
 
     customers.close()
     customer_country.close()
